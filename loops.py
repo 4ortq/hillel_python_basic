@@ -9,32 +9,30 @@ object_for_enumerate = input("write somesthing")
 collector_letters = [ ]
 numbers = 0
 glass_abc = "aiouyeAIOYUE"
-noope = [ ]
+none = [ ]
 glass = [ ]
 for index, element in enumerate(object_for_enumerate):
     while element.isdigit():
         numbers += 1
         if numbers == 3:
-            print(f"more > 3 numbers. FAIL")
+            print(f"more 3 numbers. WHILE BREAK")
             break
     else:
         if element == " ":
-            noope.append(f'{index}')
+            none.append(f'{index}')
             numbers = 0
-        elif element.isalpha():
-            if element == str.upper(element):
-                collector_letters.append(f"{element}")
-                numbers = 0
-                if element in glass_abc:
-                    glass.append(f"{element}")
-            elif element in glass_abc:
-                    glass.append(f"{element}")
         elif element in glass_abc:
-                glass.append((f"{element}"))
-                numbers = 0
+            if element.isupper():
+                collector_letters.append(f"{element}")
+                glass.append(f"{element}")
+            else: glass.append(f"{element}")
+            numbers = 0
+        elif element.isupper():
+            collector_letters.append(f"{element}")
+            numbers = 0
 print (f"jobe is done")
 print(f"element upper >>> {collector_letters}")
-print(f"probel {noope}")
+print(f"probel {none}")
 print(f"element glasss >>> {glass}")
 ############################################################################
 # numb_1 = input ("give me number")
@@ -46,15 +44,13 @@ print(f"element glasss >>> {glass}")
 #     print(f"you are exit")
 #     break
 # else:
-#     if str.isdigit(numb_1) == True:
+#     if str.isdigit(numb_1):
 #             y = int(numb_1)
-#     elif str.isdigit(numb_1) == False:
-#             y = float(numb_1)
+#     else:   y = float(numb_1)
 #     print("type operand 1 >>> ", type(y))
-#     if str.isdigit(numb_2) == True:
+#     if str.isdigit(numb_2):
 #             z = int(numb_2)
-#     elif str.isdigit(numb_2) == False:
-#             z = float(numb_2)
+#     else:   z = float(numb_2)
 #     print("type operand 2 >>> ", type(z))
 #     if work_process in "*":
 #             result = y * z
@@ -67,10 +63,10 @@ print(f"element glasss >>> {glass}")
 #     elif work_process in "**":
 #             result = y ** z
 #     else:  raise Exception("ALARM!!! incorect enter")
-#     if y == int and z == int:
-#         result = int
-#     elif y == float  and z == float:
-#         result = float
+#     # if y == int and z == int:
+#     #     result = int
+#     # elif y == float  and z == float:
+#     #     result = float
 #     print("result >>>", result)
 #     print("type result>>>", type(result))
 #     division_int_y = str(int(y))
