@@ -36,7 +36,7 @@ for el in letter:
     ecrypted.append(dict_1.get(el))
 data_ecrypted = ""
 for el in ecrypted:
-    if el + step > 25:
+    if el + step > 26:
         for key, value in dict_1.items():
             if el + step - 26 == value:
                 data_ecrypted += key
