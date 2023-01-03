@@ -89,40 +89,57 @@
 #               "second":second_value }
 # print(day_in_year(Second_data))
 ###############################################################
-data_list = []
-for el in range(1,26):
-    data_list.append(el)
-print(data_list)
-# def total_list_for(seq):
-#     total = 0
-#     for el in seq:
-#         total = total + el
-#     return total
-# print(total_list_for(data_list))
-# def total_list_while(seq):
-#     total = 0
-#     el = 0
-#     while el < len(seq):
-#         total = total + seq[el]
-#         el = el + 1
-#     return total
-# print(total_list_while(data_list))
-total = 0
-def recursion(x):
-    global total
-    if x >= len(data_list):
-       return
-    total += data_list[x]
-    recursion(x+1)
-recursion(0)
-print(total)
-print(len(data_list))
-###################################################################
-numb = int(input("write a number for fibonachi"))
-dict_fib = {0: 0, 1: 1}
-def fib(n):
-    if n in dict_fib:
-        return dict_fib[n]
-    dict_fib[n] = fib(n - 1) + fib(n - 2)
-    return dict_fib[n]
-print(fib(numb))
+# data_list = []
+# for el in range(1,26):
+#     data_list.append(el)
+# print(data_list)
+# # def total_list_for(seq):
+# #     total = 0
+# #     for el in seq:
+# #         total = total + el
+# #     return total
+# # print(total_list_for(data_list))
+# # def total_list_while(seq):
+# #     total = 0
+# #     el = 0
+# #     while el < len(seq):
+# #         total = total + seq[el]
+# #         el = el + 1
+# #     return total
+# # print(total_list_while(data_list))
+# total = 0
+# def recursion(x):
+#     global total
+#     if x >= len(data_list):
+#        return
+#     total += data_list[x]
+#     recursion(x+1)
+# recursion(0)
+# print(total)
+# print(len(data_list))
+# ###################################################################
+# numb = int(input("write a number for fibonachi"))
+# dict_fib = {0: 0, 1: 1}
+# def fib(n):
+#     if n in dict_fib:
+#         return dict_fib[n]
+#     dict_fib[n] = fib(n - 1) + fib(n - 2)
+#     return dict_fib[n]
+# print(fib(numb))
+##################################################################
+def main_decor_sandwich(func):
+    def warapper():
+        func()
+    return warapper()
+@main_decor_sandwich
+def decorator_tomatos():
+    print(f"Помідор")
+@main_decor_sandwich
+def decorator_meat():
+    print(f"м'ясо")
+@main_decor_sandwich
+def decorator_chees():
+    print(f"Сир")
+@main_decor_sandwich
+def decorator_bread():
+    print(f"Хліб")
