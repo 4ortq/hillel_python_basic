@@ -43,9 +43,7 @@ class Unit:
             param = len(item)
             return param
 
-    def War(item_1, item_2, pop_1, pop_2):
-        Unit.population_red = pop_1
-        Unit.population_blue = pop_2
+    def War(item_1, item_2):
         forses = [item_1, item_2]
         print(f'The start of the battle')
         time.sleep(5)
@@ -87,6 +85,7 @@ class Unit:
                 unit_choise = random.choice(unit)
                 left += 1
                 if choise == item_1:
+                    Unit.population_red += 1
                     if unit_choise == 'Knight':
                         item_1.append(Knight('Knight', 100, 300, 75))
                     elif unit_choise == 'Archer':
@@ -94,6 +93,7 @@ class Unit:
                     else:
                         item_1.append(Mage('Mage', 200, 100, 25, 1000))
                 elif choise == item_2:
+                    Unit.population_blue += 1
                     if unit_choise == 'Knight':
                         item_2.append(Knight('Knight', 100, 300, 75))
                     elif unit_choise == 'Archer':
@@ -166,4 +166,4 @@ print(f'{red=} \n',
       f'{population_red=} \n',
       f'{population_blue=} \n',
       f'{Unit.population=}')
-Unit.War(red, blue, population_red, population_blue)
+Unit.War(red, blue)
