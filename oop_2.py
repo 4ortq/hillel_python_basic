@@ -31,7 +31,6 @@ class Unit:
             self.attack -= 100
         print(f'The enemy has taken damage {hit} and have {enemy.hp} hp')
 
-
     def death(self, item):
         if self.hp <= 0:
             print(f'the enemy was defeated {self.name}')
