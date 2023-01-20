@@ -36,27 +36,28 @@ fieldnames = [
 
 file_path_csv = "schedules/schedule.csv"
 file_path_json = "schedules/schedule.json"
+def data_cvs_json(file_path, data, fieldnames,file_path_json):
+    with open(file_path, 'w', newline='') as fh:
+        writer = csv.DictWriter(fh, fieldnames=fieldnames)
+        writer.writeheader()
 
-with open('schedules/schedule.csv', 'w', newline='') as fh:
-    writer = csv.DictWriter(fh, fieldnames=fieldnames)
-    writer.writeheader()
+        for input_row in data:
+            writer.writerow(input_row)
 
-    for input_row in data_rows:
-        writer.writerow(input_row)
+    with open(file_path_json, "w") as fh:
+            json.dump(file_path, fh, indent=4, sort_keys=True)
 
-def reader(file_path_csv):
-        with open(file_path_csv, newline='') as csvfile:
-                reader = csv.DictReader(csvfile)
-
-                for row in reader:
-                    print( f"{row=}" )
-                    data.append(row)
-
-def dump(data, file_path_json):
-        with open(file_path_json, "w") as fh:
-            json.dump(data, fh, indent=4, sort_keys=True)
-
-data = []
-reader(file_path_csv)
-dump(data, file_path_json)
-print(data)
+# def reader(file_path_csv, data, file_path_json):
+#         with open(file_path_csv, newline='') as csvfile:
+#                 reader = csv.DictReader(csvfile)
+#
+#                 for row in reader:
+#                     print( f"{row=}" )
+#                     data.append(row)
+#
+#         with open(file_path_json, "w") as fh:
+#             json.dump(data, fh, indent=4, sort_keys=True)
+data_cvs_json(file_path_csv, data_rows, fieldnames,file_path_json)
+# data = []
+# reader(file_path_csv,data,file_path_json)
+# print(data)
