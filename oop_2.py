@@ -4,6 +4,8 @@ import time
 
 class Unit:
     population = 0
+    population_red = 0
+    population_blue = 0
 
     def __init__(self, name, attack, hp, armor):
         self.name = name
@@ -30,15 +32,21 @@ class Unit:
         print(f'The enemy has taken damage {hit} and have {enemy.hp} hp')
 
 
-    def death(self, item, population):
+    def death(self, item):
         if self.hp <= 0:
-            print(f'the enemy was defeated {self.name}/{item}')
+            print(f'the enemy was defeated {self.name}')
             item.remove(self)
             Unit.population -= 1
-            population = len(item)
-            return population
+            if item == red:
+                Unit.population_red -= 1
+            else:
+                Unit.population_blue -= 1
+            param = len(item)
+            return param
 
-    def War(item_1, item_2, population_1, population_2):
+    def War(item_1, item_2, pop_1, pop_2):
+        Unit.population_red = pop_1
+        Unit.population_blue = pop_2
         forses = [item_1, item_2]
         print(f'The start of the battle')
         time.sleep(5)
@@ -51,8 +59,8 @@ class Unit:
                         Mage.fire(el)
                     enemy = random.choice(item_2)
                     el.do_attack(enemy)
-                    population_2 = enemy.death(item_2, population_2)
-                    print(f'Blue team unit > {population_2=}')
+                    enemy.death(item_2)
+                    print(f'Blue team unit > {Unit.population_blue=}')
                     if len(item_2) == 0:
                         print(f'Victori Red team')
                         fight = False
@@ -61,8 +69,8 @@ class Unit:
                 for el in item_2:
                     enemy = random.choice(item_1)
                     el.do_attack(enemy)
-                    population_1 = enemy.death(item_1, population_1)
-                    print(f'Red team unit > {population_1=}')
+                    enemy.death(item_1)
+                    print(f'Red team unit > {Unit.population_red=}')
                     if len(item_1) == 0:
                         print(f'Victori Blue team')
                         fight = False
