@@ -125,25 +125,22 @@ def kaput(army, item_1, item_2, pop_1, pop_2):
             unit_choise = random.choice(unit)
             left += 1
             if choise == item_1:
+                pop_1 += 1
                 if unit_choise == 'Knight':
                     item_1.append(Knight('Knight', 100, 300, 75))
-                    pop_1 += 1
                 elif unit_choise == 'Archer':
                     item_1.append(Archer('Archer', 75, 150, 50))
-                    pop_1 += 1
                 else:
                     item_1.append(Mage('Mage', 200, 100, 25, 1000))
-                    pop_1 += 1
             elif choise == item_2:
+                pop_2 += 1
                 if unit_choise == 'Knight':
                     item_2.append(Knight('Knight', 100, 300, 75))
-                    pop_2 += 1
                 elif unit_choise == 'Archer':
                     item_2.append(Archer('Archer', 75, 150, 50))
-                    pop_2 += 1
                 else:
                     item_2.append(Mage('Mage', 200, 100, 25, 1000))
-                    pop_2 += 1
+
     print(f'{item_1=} \n {pop_1=}')
     print(f'{item_2=} \n {pop_2=}')
     return item_1, item_2, pop_1, pop_2
@@ -151,12 +148,16 @@ def kaput(army, item_1, item_2, pop_1, pop_2):
 
 red = []
 blue = []
+pop_1 = 0
+pop_2 = 0
 population_red = 0
 population_blue = 0
 battel = int(input(f'write how much unit are fighting in battle. Give me a number.'))
 kaput(battel, red, blue, population_red, population_blue)
 print(f'{red=} \n',
       f'{blue=} \n',
+      f'{pop_1=} \n',
+      f'{pop_2=} \n',
       f'{population_red=} \n',
       f'{population_blue=} \n',
       f'{Unit.population=}')
