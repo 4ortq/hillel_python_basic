@@ -75,6 +75,7 @@ class Knight(Unit):
         self.max_hp = hp
         self.armor = armor
         Knight.population += 1
+        Unit.population += 1
 
 
 class Archer(Unit):
@@ -87,7 +88,7 @@ class Archer(Unit):
         self.max_hp = hp
         self.armor = armor
         Archer.population += 1
-
+        Unit.population += 1
 
 
 class Mage(Unit):
@@ -101,6 +102,7 @@ class Mage(Unit):
         self.armor = armor
         self.mana = mana
         Mage.population += 1
+        Unit.population += 1
 
     def fire(self):
         if self.mana <= 100:
@@ -112,49 +114,39 @@ class Mage(Unit):
 
 
 def kaput(army, item_1, item_2, pop_1, pop_2):
-
     forse = [item_1, item_2]
     unit = ['Knight', 'Archer', 'Mage']
     left = 0
-
     while True:
-        choise = random.choice(forse)
-        unit_choise = random.choice(unit)
-        left += 1
-        if choise == item_1:
-            if unit_choise == 'Knight':
-                item_1.append(Knight('Knight', 100, 300, 75))
-                pop_1 += 1
-                if left == army:
-                    break
-            elif unit_choise == 'Archer':
-                item_1.append(Archer('Archer', 75, 150, 50))
-                pop_1 += 1
-                if left == army:
-                    break
-            if unit_choise == 'Mage':
-                item_1.append(Mage('Mage', 200, 100, 25, 1000))
-                pop_1 += 1
-                if left == army:
-                    break
-        elif choise == item_2:
-            if unit_choise == 'Knight':
-                item_2.append(Knight('Knight', 100, 300, 75))
-                pop_2 += 1
-                if left == army:
-                    break
-            elif unit_choise == 'Archer':
-                item_2.append(Archer('Archer', 75, 150, 50))
-                pop_2 += 1
-                if left == army:
-                    break
-            elif unit_choise == 'Mage':
-                item_2.append(Mage('Mage', 200, 100, 25, 1000))
-                pop_2 += 1
-                if left == army:
-                    break
+        if left == army:
+            break
+        else:
+            choise = random.choice(forse)
+            unit_choise = random.choice(unit)
+            left += 1
+            if choise == item_1:
+                if unit_choise == 'Knight':
+                    item_1.append(Knight('Knight', 100, 300, 75))
+                    pop_1 += 1
+                elif unit_choise == 'Archer':
+                    item_1.append(Archer('Archer', 75, 150, 50))
+                    pop_1 += 1
+                else:
+                    item_1.append(Mage('Mage', 200, 100, 25, 1000))
+                    pop_1 += 1
+            elif choise == item_2:
+                if unit_choise == 'Knight':
+                    item_2.append(Knight('Knight', 100, 300, 75))
+                    pop_2 += 1
+                elif unit_choise == 'Archer':
+                    item_2.append(Archer('Archer', 75, 150, 50))
+                    pop_2 += 1
+                else:
+                    item_2.append(Mage('Mage', 200, 100, 25, 1000))
+                    pop_2 += 1
     print(f'{item_1=} \n {pop_1=}')
     print(f'{item_2=} \n {pop_2=}')
+    return item_1, item_2, pop_1, pop_2
 
 
 red = []
@@ -163,8 +155,8 @@ population_red = 0
 population_blue = 0
 battel = int(input(f'write how much unit are fighting in battle. Give me a number.'))
 kaput(battel, red, blue, population_red, population_blue)
-print(  f'{red=} \n',
-        f'{blue=} \n',
-        f'{population_red=} \n',
-        f'{population_blue=} \n',
-        f'{Unit.population=}')
+print(f'{red=} \n',
+      f'{blue=} \n',
+      f'{population_red=} \n',
+      f'{population_blue=} \n',
+      f'{Unit.population=}')
