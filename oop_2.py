@@ -1,5 +1,35 @@
 import random
 import time
+import logging
+import unittest
+
+
+def init_logger(name):
+    logger = logging.getLogger(name)
+    FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    logger.setLevel(logging.DEBUG)
+    sh = logging.StreamHandler()
+    sh.setFormatter(logging.Formatter(FORMAT))
+    sh.setLevel(logging.ERROR)
+    fh = logging.FileHandler(filename='work_log')
+    fh.setFormatter(logging.Formatter(FORMAT))
+    fh.setLevel(logging.INFO)
+    logger.addHandler(sh)
+    logger.addHandler(fh)
+    logger.debug('logger was initialized')
+
+
+init_logger('root')
+
+
+class TestBuiltins(unittest.TestCase):
+
+    def test_Unit(self):
+            self.assertEqual(Unit.population, Unit.population_red + Unit.population_blue)
+            logging.info(f'Testing')
+
+if __name__ == '__main__':
+    unittest.main()
 
 
 class Unit:
@@ -41,9 +71,10 @@ class Unit:
             else:
                 Unit.population_blue -= 1
             param = len(item)
+            logging.info(f'unit defeated {self.name} in {item}')
             return param
 
-    def War(item_1, item_2):
+    def war(item_1, item_2):
         forses = [item_1, item_2]
         print(f'The start of the battle')
         time.sleep(5)
@@ -61,6 +92,7 @@ class Unit:
                     if len(item_2) == 0:
                         print(f'Victori Red team')
                         fight = False
+                        logging.info(f'The war is over')
                         break
             else:
                 for el in item_2:
@@ -71,6 +103,7 @@ class Unit:
                     if len(item_1) == 0:
                         print(f'Victori Blue team')
                         fight = False
+                        logging.info(f'The war is over')
                         break
 
     def kaput(army, item_1, item_2):
@@ -79,6 +112,7 @@ class Unit:
         left = 0
         while True:
             if left == army:
+                logging.info(f'unit sorting is finished')
                 break
             else:
                 choise = random.choice(forse)
@@ -88,18 +122,24 @@ class Unit:
                     Unit.population_red += 1
                     if unit_choise == 'Knight':
                         item_1.append(Knight('Knight', 100, 300, 75))
+                        logging.info(f'in red team unit Knight was created')
                     elif unit_choise == 'Archer':
                         item_1.append(Archer('Archer', 75, 150, 50))
+                        logging.info(f'in red team unit Archer was created')
                     else:
                         item_1.append(Mage('Mage', 200, 100, 25, 1000))
+                        logging.info(f'in red team unit Mage was created')
                 elif choise == item_2:
                     Unit.population_blue += 1
                     if unit_choise == 'Knight':
                         item_2.append(Knight('Knight', 100, 300, 75))
+                        logging.info(f'In blue team unit Knight was created')
                     elif unit_choise == 'Archer':
                         item_2.append(Archer('Archer', 75, 150, 50))
+                        logging.info(f'in blue team unit Archer was created')
                     else:
                         item_2.append(Mage('Mage', 200, 100, 25, 1000))
+                        logging.info(f'in blue team unit Mage was created')
         print(f'{item_1=}')
         print(f'{item_2=}')
         return item_1, item_2
@@ -166,4 +206,4 @@ print(f'{red=} \n',
       f'{population_red=} \n',
       f'{population_blue=} \n',
       f'{Unit.population=}')
-Unit.War(red, blue)
+Unit.war(red, blue)
