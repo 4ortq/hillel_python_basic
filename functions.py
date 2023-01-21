@@ -128,18 +128,22 @@
 # print(fib(numb))
 ##################################################################
 def main_decor_sandwich(func):
-    def warapper():
-        func()
-    return warapper()
+    print(f'Decorating function')
+
+    def decorator_tomatos():
+        print(f"Помідор")
+
+    def decorator_meat():
+        print(f"м'ясо")
+
+    def decorator_chees():
+        print(f"Сир")
+
+    def decorator_bread():
+        print(f"Хліб")
+
+    return decorator_tomatos(),decorator_meat(),decorator_chees(),decorator_bread()
+
 @main_decor_sandwich
-def decorator_tomatos():
-    print(f"Помідор")
-@main_decor_sandwich
-def decorator_meat():
-    print(f"м'ясо")
-@main_decor_sandwich
-def decorator_chees():
-    print(f"Сир")
-@main_decor_sandwich
-def decorator_bread():
-    print(f"Хліб")
+def main_func():
+    return None
